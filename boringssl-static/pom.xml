@@ -51,8 +51,10 @@
     <boringsslSourceDir>${project.build.directory}/boringssl-${boringsslBranch}</boringsslSourceDir>
     <boringsslHome>${boringsslSourceDir}/build</boringsslHome>
     <boringsslSourceDir>${project.build.directory}/boringssl-${boringsslBranch}</boringsslSourceDir>
-    <boringsslRepository>https://boringssl.googlesource.com/boringssl</boringsslRepository>
-    <boringsslBranch>chromium-stable</boringsslBranch>
+    <!-- <boringsslRepository>https://boringssl.googlesource.com/boringssl</boringsslRepository> -->
+    <boringsslRepository>https://github.com/google/boringssl.git</boringsslRepository>
+    <!-- <boringsslBranch>chromium-stable</boringsslBranch> -->
+    <boringsslBranch>master</boringsslBranch>
     <linkStatic>true</linkStatic>
     <compileLibrary>true</compileLibrary>
     <msvcSslIncludeDirs>${boringsslSourceDir}/include</msvcSslIncludeDirs>
@@ -64,6 +66,8 @@
     <skipJapicmp>true</skipJapicmp>
     <!-- We need to use the same module name for all our "native" impls as only one should be loaded -->
     <javaModuleName>${javaModuleNameNative}</javaModuleName>
+
+    <ninjaExecutable>/opt/homebrew/Cellar/ninja/1.11.1</ninjaExecutable>
   </properties>
 
   <dependencies>
@@ -1195,7 +1199,9 @@
           </plugin>
 
           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-antrun-plugin</artifactId>
+            <version>3.1.0</version>
             <executions>
 
               <!-- Only deploy to Maven Central if on centos (fedora). -->
@@ -1327,6 +1333,7 @@
           <plugin>
             <groupId>org.fusesource.hawtjni</groupId>
             <artifactId>maven-hawtjni-plugin</artifactId>
+            <version>1.15</version>
             <executions>
               <execution>
                 <id>build-native-lib</id>

@@ -82,6 +82,7 @@
     <nativeLibOnlyDir>${project.build.directory}/native-lib-only</nativeLibOnlyDir>
     <nativeJarWorkdir>${project.build.directory}/native-jar-work</nativeJarWorkdir>
     <nativeLibOsParts>${os.detected.name}_${os.detected.arch}</nativeLibOsParts>
+
     <aprVersion>1.7.0</aprVersion>
     <aprSha256>48e9dbf45ae3fdc7b491259ffb6ccf7d63049ffacbc1c0977cced095e4c2d5a2</aprSha256>
     <boringsslBranch>chromium-stable</boringsslBranch>
@@ -98,12 +99,16 @@
     <opensslPatchVersion>q</opensslPatchVersion>
     <opensslVersion>${opensslMinorVersion}${opensslPatchVersion}</opensslVersion>
     <opensslSha256>d7939ce614029cdff0b6c20f0e2e5703158a489a72b2507b8bd51bf8c8fd10ca</opensslSha256>
-    <aprHome>${project.build.directory}/apr</aprHome>
+
+    <!-- <aprHome>${project.build.directory}/apr</aprHome>-->
+    <aprHome>/opt/homebrew/Cellar/apr/1.7.0_3</aprHome>
+
     <aprSourceDir>${project.build.directory}/apr-source</aprSourceDir>
     <aprPatchFile>r1871981-macos11.patch</aprPatchFile>
     <aprPatchFileSha256>8754b8089d0eb53a7c4fd435c9a9300560b675a8ff2c32315a5e9303408447fe</aprPatchFileSha256>
     <archBits>64</archBits>
     <linkStatic>false</linkStatic>
+
     <osxCrossCompile>false</osxCrossCompile>
     <sslHome>${project.build.directory}/ssl</sslHome>
     <msvcSslIncludeDirs>${sslHome}/include</msvcSslIncludeDirs>
@@ -164,11 +169,12 @@
         <plugin>
           <groupId>org.fusesource.hawtjni</groupId>
           <artifactId>maven-hawtjni-plugin</artifactId>
-          <version>1.11</version>
+          <version>1.15</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-scm-plugin</artifactId>
-          <version>1.11.2</version>
+          <version>1.13.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
@@ -184,8 +190,9 @@
           <version>3.1.2</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
-          <version>1.8</version>
+          <version>3.1.0</version>
           <dependencies>
             <dependency>
               <groupId>org.apache.ant</groupId>
